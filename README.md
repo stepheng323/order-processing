@@ -64,6 +64,7 @@ This is a backend application for managing an order processing system using Nest
     - `utils` - Contains utility functions.
     - `repo/` - Contains query for each model.
 - `knexfile.js` - Knex configuration file for migrations and seeds.
+- `design.md` - System design diagram and flow
 
 ### Usage
 
