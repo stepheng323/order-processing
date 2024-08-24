@@ -9,7 +9,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "knex": "knex --knexfile knexfile.ts",
-    "migrate": "npx knex migrate:latest  --knexfile knexfile.ts",
+    "migrate": "node -r dotenv/config ./node_modules/knex/bin/cli.js migrate:latest",
     "migration:rollback": "npx knex migrate:rollback --knexfile knexfile.ts",
     "migrate:make": "yarn run knex migrate:make -- -x ts",
     "start": "nest start",

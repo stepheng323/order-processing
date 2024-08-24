@@ -1,85 +1,78 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Order Processing System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This is a backend application for managing an order processing system using NestJS, Objection.js, Knex, and PostgreSQL. The application provides CRUD functionality for handling various entities like Orders, Meals, Brands, and CalculatedOrders.
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS Framework**: A scalable and maintainable structure for building server-side applications.
+- **Objection.js**: A SQL-friendly ORM for managing database queries and schema in a more intuitive way.
+- **Knex.js**: A SQL query builder used for handling migrations and complex queries.
+- **PostgreSQL**: A reliable and robust relational database for storing application data.
+- **WebSocket Gateway**: Real-time order status updates using WebSocket for enhanced user experience.
 
-## Project setup
+## Getting Started
 
-```bash
-$ yarn install
-```
+### Prerequisites
 
-## Compile and run the project
+- Node.js (v16+ recommended)
+- PostgreSQL (latest version recommended)
+- yarn
 
-```bash
-# development
-$ yarn run start
+### Installation
 
-# watch mode
-$ yarn run start:dev
+1. **Clone the Repository**:
+    ```bash 
+    git clone git@github.com:stepheng323/order-processing.git
+    cd order-processing
+    ```
+]
+2. **Install Dependencies**:
+    ```bash
+    yarn install
+    ```
 
-# production mode
-$ yarn run start:prod
-```
+3. **Set Up Database**:
+    - Install PostgreSQL and create a new database:
+      ```bash
+      createdb order_processing_db
+      ```
+    - Configure your database settings in the `.env` file:
+      ```bash
+      DATABASE_URL=DATABASE_URL=postgres://postgres:postgres@localhost:5432/order_processing_db
+      ```
 
-## Run tests
+4. **Run Database Migrations**:
+    ```bash
+    yarn run migrate
+    ```
 
-```bash
-# unit tests
-$ yarn run test
+5. **Start the Application**:
+    ```bash
+    npm run start:dev
+    ```
+### Project Structure
 
-# e2e tests
-$ yarn run test:e2e
+- `src/`
+    - `resources/`
+        - `orders/` - Contains the order-related modules, services, controllers, and DTOs.
+        - `meals/` - Contains the meal-related modules, services, controllers, and DTOs.
+        - `brands/` - Contains the brand-related modules, services, controllers, and DTOs.
+        - `calculated-orders/` - Contains the calculated order-related modules, services, controllers, and DTOs.
+    - `lib` - Contains shared modules. it contains database migrations, models etc
+    - `utils` - Contains utility functions.
+    - `repo/` - Contains query for each model.
+- `knexfile.js` - Knex configuration file for migrations and seeds.
 
-# test coverage
-$ yarn run test:cov
-```
+### Usage
 
-## Resources
+1. **Create Orders**:
+    - Use the `POST /orders` endpoint to create new orders.
+2. **Get Orders**:
+    - Use the `GET /orders` endpoint to retrieve a list of all orders.
+3. **Update Orders**:
+    - Use the `PATCH /orders/:id` endpoint to update an existing order.
+4. **Delete Orders**:
+    - Use the `DELETE /orders/:id` endpoint to remove an order.
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
